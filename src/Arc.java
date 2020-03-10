@@ -2,11 +2,19 @@
 public class Arc {
     private Noeud source;
     private Noeud cible;
-    private double poids;
+    public double poids;// coût
+    public int borne, capacite;// quantités min, max
+    public int flux;
     
     public Arc(Noeud x, Noeud y) {
         this.source = x;
         this.cible = y;
+    }
+    
+    public Arc(Noeud x, Noeud y, double poids, int capacite) {
+    	this(x, y);
+    	this.poids = poids;
+    	this.capacite = capacite;
     }
     
     public String toString() {
