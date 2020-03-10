@@ -58,13 +58,4 @@ public class Point extends Noeud {
 	
 	public double getX() {return x;}
 	public double getY() {return y;}
-	
-	public static void main(String[] args) {
-		Point a = new Point(0, 0, 0);
-		Point b = new Point(1, 12, 13);
-		Point c = new Point(2, 100, 100);
-		Point[] points = {a, c, c, b, c};
-		
-		System.out.println(a.triePoints(Arrays.asList(points)));
-	}
 }

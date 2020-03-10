@@ -29,11 +29,4 @@ public class ScaleFree extends Graphe {
 			addArcDouble(m[2 * i], m[2 * i + 1]);
 		}
 	}
-	
-	public static void main(String[] args) {
-		ScaleFree graphe = new ScaleFree(10, 3);
-		
-		// System.out.println(graphe);
-		System.out.println(new ScaleFree(25, 1));
-	}
 }
