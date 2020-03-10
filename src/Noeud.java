@@ -4,14 +4,18 @@ import java.util.LinkedList;
 import java.util.ListIterator;
 
 public class Noeud {
-    private int id;
+    private String id;
     public List<Arc> succ;
     
     public boolean mark;
     
-    public Noeud(int id) {
+    public Noeud(String id) {
         this.id = id;
         succ = new LinkedList<Arc>();
+    }
+
+    public Noeud(int id) {
+    	this(id+"");
     }
     
     public String toString() {
@@ -36,16 +40,20 @@ public class Noeud {
         return res.toString();
     }
     
-    public int getId() {
+    public String getId() {
         return id;
     }
     
+    public boolean matchId(String id) {
+        return this.id.equals(id);
+    }
+
     public boolean matchId(int id) {
-        return this.id == id;
+        return this.id.equals(id+"");
     }
     
-    public int compareId(int id) {
-        return this.id - id;
+    public int compareId(String id) {
+        return this.id.compareTo(id);
     }
     
     public void addArc(Noeud cible) {
@@ -54,7 +62,7 @@ public class Noeud {
         while(it.hasNext()) {
             Arc arc = it.next();
             
-            if(arc.getCibleId() == cible.getId()) {
+            if(arc.getCibleId().equals(cible.getId())) {
                 return;
             }
         }
@@ -62,18 +70,22 @@ public class Noeud {
         succ.add(new Arc(this, cible));
     }
     
-    public boolean hasSuccesseur(int j) {
+    public boolean hasSuccesseur(String j) {
         ListIterator<Arc> it = succ.listIterator();
         
         while(it.hasNext()) {
             Arc arc = it.next();
             
-            if(arc.getCibleId() == j) {
+            if(arc.getCibleId().equals(j)) {
                 return true;
             }
         }
         
         return false;
+    }
+
+    public boolean hasSuccesseur(int j) {
+        return hasSuccesseur(j+"");
     }
     
     public ListIterator<Arc> arcsIterator() {
@@ -101,30 +113,19 @@ public class Noeud {
     	return succ;
     }
     
-    public void removeSuccesseur(int j) {
+    public void removeSuccesseur(String j) {
     	ListIterator<Arc> it = succ.listIterator();
     	
     	while(it.hasNext()) {
     		Arc arc = it.next();
     		
-    		if(arc.getCibleId() == j) {
+    		if(arc.getCibleId().equals(j)) {
     			it.remove();
     		}
     	}
     }
     
-    public static void main(String[] args) {
-        Graphe graphe = new Graphe(5);
-        
-        graphe.addNoeud(6);
-        graphe.addNoeud(6);
-        
-        graphe.addArc(1, 2);
-        graphe.addArc(1, 2);
-        graphe.addArc(1, 5);
-        graphe.addArc(2, 5);
-        graphe.addArc(12, 5);
-        
-        System.out.println(graphe);
+    public void removeSuccesseur(int j) {
+    	removeSuccesseur(j+"");
     }
 }

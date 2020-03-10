@@ -13,11 +13,11 @@ public class Arc {
         return "(" + source + ", " + cible + ")";
     }
     
-    public int getSourceId() {
+    public String getSourceId() {
         return source.getId();
     }
     
-    public int getCibleId() {
+    public String getCibleId() {
         return cible.getId();
     }
     

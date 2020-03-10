@@ -106,13 +106,4 @@ public class RandomGraphe extends Graphe {
 		
 		return res;
 	}
-	
-	public static void main(String[] args) {
-		// System.out.println(new RandomGraphe(5, 0.5));
-		// System.out.println(RandomGraphe.algoErdosRenyi(4, 8));
-		// System.out.println(RandomGraphe.algoErdosRenyi(15, 32));
-		
-		// System.out.println(RandomGraphe.RandomGraphe_lineaire(4, 8));
-		System.out.println(RandomGraphe.RandomGraphe_lineaire(15, 32));
-	}
 }

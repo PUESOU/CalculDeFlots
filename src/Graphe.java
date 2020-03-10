@@ -16,11 +16,11 @@ import java.io.FileWriter;
 
 public class Graphe {
     private List<Noeud> noeuds;
-    private HashMap<Integer, Noeud> hmap;
+    private HashMap<String, Noeud> hmap;
     
     public Graphe() {
         noeuds = new LinkedList<Noeud>();
-        hmap = new HashMap<Integer, Noeud>();
+        hmap = new HashMap<String, Noeud>();
     }
     
     public Graphe(int k) {
@@ -50,6 +50,8 @@ public class Graphe {
 	    				addNoeud(y);
 	    				addArc(x, y);
     				} catch(NumberFormatException e) {
+    		    		
+    		    	} catch(Exception e) {
     		    		
     		    	}
     			// }
@@ -96,8 +98,12 @@ public class Graphe {
         return null;
     }
     
+    public Noeud getNoeud(String n) {
+    	return hmap.get(n);
+    }
+    
     public Noeud getNoeud(int n) {
-        return hmap.get(n);
+    	return getNoeud(n+"");
     }
     
     public void addArc(int x, int y) {
@@ -271,7 +277,7 @@ public class Graphe {
     	
     	System.out.println(noeud.getId());
     	
-    	HashMap<Integer, String> profondeurNoeuds = new HashMap<Integer, String>();
+    	HashMap<String, String> profondeurNoeuds = new HashMap<String, String>();
     	profondeurNoeuds.put(noeud.getId(), "");
     	
     	while(!file.isEmpty()) {
@@ -304,7 +310,7 @@ public class Graphe {
     	// resetProfondeur();
     }
     
-    public void addArcDouble(int x, int y) {
+    public void addArcDouble(String x, String y) {
         Noeud source = getNoeud(x);
         Noeud cible = getNoeud(y);
         
@@ -313,6 +319,10 @@ public class Graphe {
             cible.addArc(source);
         }
     }
+    
+    public void addArcDouble(int x, int y) {addArcDouble(x+"", y+"");}
+    public void addArcDouble(String x, int y) {addArcDouble(x, y+"");}
+    public void addArcDouble(int x, String y) {addArcDouble(x+"", y);}
     
     public void export() {
     	StringBuffer buff = new StringBuffer("Source,Target\n");
@@ -341,7 +351,7 @@ public class Graphe {
     	}
     }
     
-    public boolean hasArcDouble(int x, int y) {
+    public boolean hasArcDouble(String x, String y) {
     	Noeud source = getNoeud(x), cible = getNoeud(y);
     	
     	if(source == null || cible == null) {
@@ -351,7 +361,11 @@ public class Graphe {
     	return source.hasSuccesseur(y) && cible.hasSuccesseur(x);
     }
     
-    public void removeArcDouble(int x, int y) {
+    public boolean hasArcDouble(int x, int y) {return hasArcDouble(x+"", y+"");}
+    public boolean hasArcDouble(String x, int y) {return hasArcDouble(x, y+"");}
+    public boolean hasArcDouble(int x, String y) {return hasArcDouble(x+"", y);}
+    
+    public void removeArcDouble(String x, String y) {
     	Noeud source = getNoeud(x);
     	Noeud cible = getNoeud(y);
     	
@@ -364,45 +378,15 @@ public class Graphe {
     	}
     }
     
+    public void removeArcDouble(int x, int y) {removeArcDouble(x+"", y+"");}
+    public void removeArcDouble(String x, int y) {removeArcDouble(x, y+"");}
+    public void removeArcDouble(int x, String y) {removeArcDouble(x+"", y);}
+    
     public List<Noeud> getNoeuds() {
     	return noeuds;
     }
     
     public int getNoeudCount() {
     	return noeuds.size();
-    }
-    
-    public static void main(String[] args) {
-    	// System.out.println(new Graphe("test.csv"));
-    	// System.out.println(new Graphe("Arcs-toy2.csv"));
-    	
-    	////  ////
-    	
-    	Graphe graphe = new Graphe(9);
-    	
-    	graphe.addArc(1, 3);
-    	graphe.addArc(1, 5);
-    	graphe.addArc(1, 6);
-    	graphe.addArc(1, 7);
-    	graphe.addArc(2, 1);
-    	graphe.addArc(3, 2);
-    	graphe.addArc(3, 6);
-    	graphe.addArc(4, 2);
-    	graphe.addArc(4, 9);
-    	graphe.addArc(7, 3);
-    	graphe.addArc(7, 6);
-    	graphe.addArc(8, 2);
-    	graphe.addArc(8, 4);
-    	graphe.addArc(8, 5);
-    	
-    	System.out.println(graphe);
-    	
-    	graphe.parcours();
-    	graphe.profI();
-    	graphe.largeur();
-    	
-    	////  ////
-    	
-    	graphe.export();
     }
 }

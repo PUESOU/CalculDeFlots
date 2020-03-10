@@ -46,15 +46,4 @@ public class SmallWorld extends Graphe {
 	
 	// J'ai pas fait le Modèle Small-World (3)
 	
-	public static void main(String[] args) {
-		// System.out.println(new SmallWorld(10, 2));
-		System.out.println(new SmallWorld(10, 2, 0.2));
-		
-		Graphe graphe = new Graphe(20);
-		
-		graphe.addArcDouble(1, 2);
-		// System.out.println(graphe);
-		graphe.removeArcDouble(1, 2);
-		// System.out.println(graphe);
-	}
 }

@@ -42,21 +42,4 @@ public class GrapheTSP extends Graphe {
 		
 		return points;
 	}
-	
-	public static void main(String[] args) {
-		GrapheTSP graphe = new GrapheTSP(10, 1);
-		
-		for(int i = 0; i < graphe.getNoeudCount(); ++i) {
-			Point point = (Point)graphe.getNoeud(i);
-			System.out.println(i + "(" + point.getX() + ", " + point.getY() + ")");
-			
-			for(int j = 0; j < graphe.getNoeudCount(); ++j) {
-				if(i != j) {
-					System.out.println(j + " : " + point.distance((Point)graphe.getNoeud(j)));
-				}
-			}
-		}
-		
-		System.out.println(graphe);
-	}
 }
