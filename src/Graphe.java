@@ -389,4 +389,21 @@ public class Graphe {
     public int getNoeudCount() {
     	return noeuds.size();
     }
+    
+    /**
+     * Retourne tous les arcs du graphe.
+     * @return la liste de tous les arcs.
+     */
+    
+    public List<Arc> getArcs() {
+    	List<Arc> arcs = new LinkedList<Arc>();
+    	
+    	for(Noeud noeud : noeuds) {
+    		for(Arc arc : noeud.getSucc()) {
+    			arcs.add(arc);
+    		}
+    	}
+    	
+    	return arcs;
+    }
 }
