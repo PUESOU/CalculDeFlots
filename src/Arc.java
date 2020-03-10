@@ -4,7 +4,7 @@ public class Arc {
     private Noeud cible;
     public double poids;// coût
     public int borne, capacite;// quantités min, max
-    public int flux;
+    public int flux;// quantité courante
     
     public Arc(Noeud x, Noeud y) {
         this.source = x;
@@ -31,5 +31,13 @@ public class Arc {
     
     public Noeud getCible() {
     	return cible;
+    }
+    
+    public boolean estSature() {
+    	return flux >= capacite;
+    }
+    
+    public int getCapaciteResiduelle() {
+    	return capacite - flux;
     }
 }
