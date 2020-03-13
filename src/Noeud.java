@@ -138,4 +138,62 @@ public class Noeud {
     public void removeSuccesseur(int j) {
     	removeSuccesseur(j+"");
     }
+    
+    /**
+     * Retourne la liste de tous les chemins de nœuds, partant du nœud courant vers les feuilles.
+     * @return la liste des listes de nœuds.
+     */
+    
+    public List<List<Noeud>> getBranches() {
+    	List<List<Noeud>> branches = new LinkedList<List<Noeud>>();
+    	
+    	for(Arc arc : succ) {
+    		List<List<Noeud>> subBranches = arc.getCible().getBranches();
+    		
+    		for(List<Noeud> subBranch : subBranches) {
+    			subBranch.add(0, this);
+    		}
+    		
+    		branches.addAll(subBranches);
+    	}
+    	
+    	if(branches.size() == 0) {
+    		List<Noeud> branch = new LinkedList<Noeud>();
+    		
+    		branch.add(this);
+    		
+    		branches.add(branch);
+    	}
+    	
+    	return branches;
+    }
+    
+    /**
+     * Retourne la liste de tous les chemins d'arcs, partant du nœud courant vers les feuilles.
+     * @return la liste des listes d'arcs.
+     */
+    
+    public List<List<Arc>> getPaths() {
+    	List<List<Arc>> paths = new LinkedList<List<Arc>>();
+    	
+    	for(Arc arc : succ) {
+    		List<List<Arc>> subPaths = arc.getCible().getPaths();
+    		
+    		for(List<Arc> subPath : subPaths) {
+    			subPath.add(0, arc);
+    		}
+    		
+    		if(subPaths.size() == 0) {
+    			List<Arc> subPath = new LinkedList<Arc>();
+    			
+    			subPath.add(arc);
+    			
+    			subPaths.add(subPath);
+    		}
+    		
+    		paths.addAll(subPaths);
+    	}
+    	
+    	return paths;
+    }
 }
