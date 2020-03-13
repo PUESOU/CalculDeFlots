@@ -9,6 +9,8 @@ public class Noeud {
     
     public boolean mark;
     
+    public static int stringType = 1;
+    
     public Noeud(String id) {
         this.id = id;
         succ = new LinkedList<Arc>();
@@ -19,25 +21,33 @@ public class Noeud {
     }
     
     public String toString() {
-        StringBuffer res = new StringBuffer();
-        res.append(id);
-        res.append("(");
-        
-        ListIterator<Arc> it = succ.listIterator();
-        
-        while(it.hasNext()) {
-            Arc arc = it.next();
-            
-            res.append(arc.getCibleId());
-            
-            if(it.hasNext()) {
-                res.append(", ");
-            }
+        if(stringType == 0) {
+        	return id;
         }
         
-        res.append(")");
+        if(stringType == 1) {
+	    	StringBuffer res = new StringBuffer();
+	        res.append(id);
+	        res.append("(");
+	        
+	        ListIterator<Arc> it = succ.listIterator();
+	        
+	        while(it.hasNext()) {
+	            Arc arc = it.next();
+	            
+	            res.append(arc.getCibleId());
+	            
+	            if(it.hasNext()) {
+	                res.append(", ");
+	            }
+	        }
+	        
+	        res.append(")");
+	        
+	        return res.toString();
+        }
         
-        return res.toString();
+    	return id;
     }
     
     public String getId() {
