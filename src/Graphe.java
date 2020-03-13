@@ -68,7 +68,7 @@ public class Graphe {
         hmap.put(noeud.getId(), noeud);
     }
     
-    public void addNoeud(int n) {
+    public void addNoeud(String n) {
         ListIterator<Noeud> it = noeuds.listIterator();
         
         while(it.hasNext()) {
@@ -81,6 +81,8 @@ public class Graphe {
         
         addNoeud(new Noeud(n));
     }
+    
+    public void addNoeud(int n) {addNoeud(n+"");}
     
     // Complexité : O(n)
     
@@ -106,7 +108,7 @@ public class Graphe {
     	return getNoeud(n+"");
     }
     
-    public void addArc(int x, int y) {
+    public void addArc(String x, String y) {
         Noeud source = getNoeud(x);
         Noeud cible = getNoeud(y);
         
@@ -114,6 +116,10 @@ public class Graphe {
             source.addArc(cible);
         }
     }
+    
+    public void addArc(int x, int y) {addArc(x+"", y+"");}
+    public void addArc(String x, int y) {addArc(x, y+"");}
+    public void addArc(int x, String y) {addArc(x+"", y);}
     
     public String toString() {
         String res = "";
