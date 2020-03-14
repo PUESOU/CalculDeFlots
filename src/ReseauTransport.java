@@ -165,4 +165,26 @@ public class ReseauTransport extends Graphe {
 	private static int irandom(int min, int max) {
 		return min + (int)Math.floor(Math.random() * (max - min + 1));
 	}
+	
+	/**
+	 * Attribue à chaque arc du graphe une capacité aléatoire.
+	 * @param min la capacité minimale pour chaque arc.
+	 * @param max la capacité maximale pour chaque arc.
+	 */
+	
+	public void randomizeCapacites(int min, int max) {
+		for(Noeud noeud : getNoeuds()) {
+			for(Arc arc : noeud.getSucc()) {
+				arc.capacite = irandom(min, max);
+			}
+		}
+	}
+	
+	/**
+	 * Attribue à chaque arc du graphe une capacité aléatoire entre 5 et 50.
+	 */
+	
+	public void randomizeCapacites() {
+		randomizeCapacites(5, 50);
+	}
 }
