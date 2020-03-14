@@ -196,4 +196,14 @@ public class Noeud {
     	
     	return paths;
     }
+    
+    public Arc findArc(String cibleId) {
+    	for(Arc arc : succ) {
+    		if(arc.getCibleId().equals(cibleId)) {
+    			return arc;
+    		}
+    	}
+    	
+    	return null;
+    }
 }
