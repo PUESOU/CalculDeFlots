@@ -44,4 +44,54 @@ public class Test {
 		
 		return buf.toString();
 	}
+	
+	public static ReseauTransport example0() {
+		ReseauTransport reseauTransport = new ReseauTransport();
+		
+		reseauTransport.addNoeud("E");
+		
+		for(int i = 0; i < 3; ++i) {
+			reseauTransport.addNoeud(i+1);
+		}
+		
+		for(int i = 0; i < 4; ++i) {
+			reseauTransport.addNoeud((char)('a' + i) + "");
+		}
+		
+		reseauTransport.addNoeud("S");
+		
+		reseauTransport.addArc("E", "1");
+		reseauTransport.addArc("E", "2");
+		reseauTransport.addArc("E", "3");
+		reseauTransport.addArc("1", "a");
+		reseauTransport.addArc("1", "b");
+		reseauTransport.addArc("1", "d");
+		reseauTransport.addArc("2", "a");
+		reseauTransport.addArc("2", "b");
+		reseauTransport.addArc("2", "c");
+		reseauTransport.addArc("3", "c");
+		reseauTransport.addArc("3", "d");
+		reseauTransport.addArc("a", "S");
+		reseauTransport.addArc("b", "S");
+		reseauTransport.addArc("c", "S");
+		reseauTransport.addArc("d", "S");
+		
+		reseauTransport.getNoeud("E").findArc("1").capacite = 45;
+		reseauTransport.getNoeud("E").findArc("2").capacite = 25;
+		reseauTransport.getNoeud("E").findArc("3").capacite = 25;
+		reseauTransport.getNoeud("1").findArc("a").capacite = 10;
+		reseauTransport.getNoeud("1").findArc("b").capacite = 15;
+		reseauTransport.getNoeud("1").findArc("d").capacite = 20;
+		reseauTransport.getNoeud("2").findArc("a").capacite = 20;
+		reseauTransport.getNoeud("2").findArc("b").capacite = 5;
+		reseauTransport.getNoeud("2").findArc("c").capacite = 5;
+		reseauTransport.getNoeud("3").findArc("c").capacite = 10;
+		reseauTransport.getNoeud("3").findArc("d").capacite = 10;
+		reseauTransport.getNoeud("a").findArc("S").capacite = 30;
+		reseauTransport.getNoeud("b").findArc("S").capacite = 10;
+		reseauTransport.getNoeud("c").findArc("S").capacite = 20;
+		reseauTransport.getNoeud("d").findArc("S").capacite = 30;
+		
+		return reseauTransport;
+	}
 }
