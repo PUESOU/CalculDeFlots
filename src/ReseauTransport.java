@@ -191,4 +191,16 @@ public class ReseauTransport extends Graphe {
 	public void randomizeCapacites() {
 		randomizeCapacites(5, 50);
 	}
+	
+	public List<Noeud> getPred(Noeud cible) {
+		List<Noeud> predecesseurs = new ArrayList<Noeud>();
+		
+		for(Noeud noeud : getNoeuds()) {
+			if(noeud.hasSuccesseur(cible.getId())) {
+				predecesseurs.add(noeud);
+			}
+		}
+		
+		return predecesseurs;
+	}
 }
