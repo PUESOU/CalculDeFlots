@@ -5,6 +5,10 @@ import java.util.List;
 
 public class ReseauTransport extends Graphe {
 	
+	public ReseauTransport() {
+		super();
+	}
+	
 	/**
 	 * Construit un graphe composé d'une entrée (E), de n nœuds numériques suivant E, de m nœuds abécédaires suivant les nœuds numériques, et d'une sortie (S). 
 	 * @param n le nombre de nœuds numériques (suivant E).
