@@ -79,6 +79,10 @@ public class ReseauTransport extends Graphe {
 			
 			addArc(id, "S");
 		}
+		
+		// Capacités
+		
+		randomizeCapacites();
 	}
 	
 	/**
