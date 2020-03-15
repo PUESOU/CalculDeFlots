@@ -6,20 +6,7 @@ public class Test {
 	public static void main(String[] args) {
 		ReseauTransport reseauTransport = new ReseauTransport(5, 5);// {E, 1, 2, 3, 4, 5, a, b, c, d, e, S}
 		
-		Noeud.stringType = 1;// Affichage des nœuds : "id(suivants…)".
-		
-		System.out.println("\n---- Noeud(suivants…) ----");
-		System.out.println(reseauTransport);
-		
-		Noeud.stringType = 0;// Affichage des nœuds : "id".
-		
-		System.out.println("\n---- Branches ----");
-		System.out.println(listJoin(reseauTransport.getNoeud("E").getBranches(), "\n"));
-		
-		System.out.println("\n---- Chemins ----");
-		System.out.println(listJoin(reseauTransport.getNoeud("E").getPaths(), "\n"));
-		
-		Noeud.stringType = 1;// Remet l'affichage par défaut.
+		print(reseauTransport);
 	}
 	
 	/**
@@ -93,5 +80,22 @@ public class Test {
 		reseauTransport.getNoeud("d").findArc("S").capacite = 30;
 		
 		return reseauTransport;
+	}
+	
+	public static void print(ReseauTransport reseauTransport) {
+		Noeud.stringType = 1;// Affichage des nœuds : "id(suivants…)".
+		
+		System.out.println("\n---- Noeud(suivants…) ----");
+		System.out.println(reseauTransport);
+		
+		Noeud.stringType = 0;// Affichage des nœuds : "id".
+		
+		System.out.println("\n---- Branches ----");
+		System.out.println(listJoin(reseauTransport.getNoeud("E").getBranches(), "\n"));
+		
+		System.out.println("\n---- Chemins ----");
+		System.out.println(listJoin(reseauTransport.getNoeud("E").getPaths(), "\n"));
+		
+		Noeud.stringType = 1;// Remet l'affichage par défaut.
 	}
 }
