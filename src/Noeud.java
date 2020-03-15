@@ -168,6 +168,8 @@ public class Noeud {
     	return branches;
     }
     
+    private boolean calledGetPaths = false;
+    
     /**
      * Retourne la liste de tous les chemins d'arcs, partant du nœud courant vers les feuilles.
      * @return la liste des listes d'arcs.
@@ -176,23 +178,38 @@ public class Noeud {
     public List<List<Arc>> getPaths() {
     	List<List<Arc>> paths = new LinkedList<List<Arc>>();
     	
+    	calledGetPaths = true;
+		
     	for(Arc arc : succ) {
-    		List<List<Arc>> subPaths = arc.getCible().getPaths();
+    		Noeud cible = arc.getCible();
     		
-    		for(List<Arc> subPath : subPaths) {
-    			subPath.add(0, arc);
+    		if(!cible.calledGetPaths) {
+    			List<List<Arc>> subPaths = cible.getPaths();
+	    		
+	    		for(List<Arc> subPath : subPaths) {
+	    			subPath.add(0, arc);
+	    		}
+	    		
+	    		if(subPaths.size() == 0) {
+	    			List<Arc> subPath = new LinkedList<Arc>();
+	    			
+	    			subPath.add(arc);
+	    			
+	    			subPaths.add(subPath);
+	    		}
+	    		
+	    		paths.addAll(subPaths);
     		}
     		
-    		if(subPaths.size() == 0) {
+    		else {
     			List<Arc> subPath = new LinkedList<Arc>();
-    			
     			subPath.add(arc);
     			
-    			subPaths.add(subPath);
+    			paths.add(subPath);
     		}
-    		
-    		paths.addAll(subPaths);
     	}
+    	
+    	calledGetPaths = false;
     	
     	return paths;
     }
