@@ -40,4 +40,8 @@ public class Arc {
     public int getCapaciteResiduelle() {
     	return capacite - flux;
     }
+    
+    public Noeud getSource() {
+    	return source;
+    }
 }
