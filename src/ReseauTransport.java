@@ -196,12 +196,20 @@ public class ReseauTransport extends Graphe {
 		randomizeCapacites(5, 50);
 	}
 	
-	public List<Noeud> getPred(Noeud cible) {
-		List<Noeud> predecesseurs = new ArrayList<Noeud>();
+	/**
+	 * Retourne la liste des arcs menant vers le noeud donné.
+	 * @param cible le noeud duquel récupérer les prédécesseurs.
+	 * @return la liste des arcs précédant le noeud.
+	 */
+	
+	public List<Arc> getPred(Noeud cible) {
+		List<Arc> predecesseurs = new ArrayList<Arc>();
 		
 		for(Noeud noeud : getNoeuds()) {
-			if(noeud.hasSuccesseur(cible.getId())) {
-				predecesseurs.add(noeud);
+			Arc arc = noeud.findArc(cible.getId());
+			
+			if(arc != null) {
+				predecesseurs.add(arc);
 			}
 		}
 		
