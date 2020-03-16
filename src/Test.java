@@ -98,4 +98,33 @@ public class Test {
 		
 		Noeud.stringType = 1;// Remet l'affichage par défaut.
 	}
+
+	public static ReseauTransport example1() {
+		ReseauTransport reseauTransport = new ReseauTransport();
+		
+		reseauTransport.addNoeud("E");
+		reseauTransport.addNoeud("1");
+		reseauTransport.addNoeud("2");
+		reseauTransport.addNoeud("3");
+		reseauTransport.addNoeud("S");
+		
+		reseauTransport.addArc("E", "1");
+		reseauTransport.addArc("E", "2");
+		reseauTransport.addArc("1", "2");
+		reseauTransport.addArc("1", "3");
+		reseauTransport.addArc("2", "3");
+		reseauTransport.addArc("2", "S");
+		reseauTransport.addArc("3", "S");
+		
+		reseauTransport.getNoeud("E").findArc("1").setCapacite(30).setPoids(7);
+		reseauTransport.getNoeud("E").findArc("2").setCapacite(20).setPoids(6);
+		reseauTransport.getNoeud("1").findArc("2").setCapacite(25).setPoids(5);
+		reseauTransport.getNoeud("1").findArc("3").setCapacite(10).setPoids(4);
+		reseauTransport.getNoeud("2").findArc("3").setCapacite(20).setPoids(2);
+		reseauTransport.getNoeud("2").findArc("S").setCapacite(25).setPoids(2);
+		reseauTransport.getNoeud("3").findArc("S").setCapacite(20).setPoids(1);
+		
+		return reseauTransport;
+	}
+	
 }
