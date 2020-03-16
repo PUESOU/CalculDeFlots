@@ -63,21 +63,21 @@ public class Test {
 		reseauTransport.addArc("c", "S");
 		reseauTransport.addArc("d", "S");
 		
-		reseauTransport.getNoeud("E").findArc("1").setCapacite(45);
-		reseauTransport.getNoeud("E").findArc("2").setCapacite(25);
-		reseauTransport.getNoeud("E").findArc("3").setCapacite(25);
-		reseauTransport.getNoeud("1").findArc("a").setCapacite(10);
-		reseauTransport.getNoeud("1").findArc("b").setCapacite(15);
-		reseauTransport.getNoeud("1").findArc("d").setCapacite(20);
-		reseauTransport.getNoeud("2").findArc("a").setCapacite(20);
-		reseauTransport.getNoeud("2").findArc("b").setCapacite(5);
-		reseauTransport.getNoeud("2").findArc("c").setCapacite(5);
-		reseauTransport.getNoeud("3").findArc("c").setCapacite(10);
-		reseauTransport.getNoeud("3").findArc("d").setCapacite(10);
-		reseauTransport.getNoeud("a").findArc("S").setCapacite(30);
-		reseauTransport.getNoeud("b").findArc("S").setCapacite(10);
-		reseauTransport.getNoeud("c").findArc("S").setCapacite(20);
-		reseauTransport.getNoeud("d").findArc("S").setCapacite(30);
+		reseauTransport.findArc("E", "1").setCapacite(45);
+		reseauTransport.findArc("E", "2").setCapacite(25);
+		reseauTransport.findArc("E", "3").setCapacite(25);
+		reseauTransport.findArc("1", "a").setCapacite(10);
+		reseauTransport.findArc("1", "b").setCapacite(15);
+		reseauTransport.findArc("1", "d").setCapacite(20);
+		reseauTransport.findArc("2", "a").setCapacite(20);
+		reseauTransport.findArc("2", "b").setCapacite(5);
+		reseauTransport.findArc("2", "c").setCapacite(5);
+		reseauTransport.findArc("3", "c").setCapacite(10);
+		reseauTransport.findArc("3", "d").setCapacite(10);
+		reseauTransport.findArc("a", "S").setCapacite(30);
+		reseauTransport.findArc("b", "S").setCapacite(10);
+		reseauTransport.findArc("c", "S").setCapacite(20);
+		reseauTransport.findArc("d", "S").setCapacite(30);
 		
 		return reseauTransport;
 	}
@@ -98,7 +98,7 @@ public class Test {
 		
 		Noeud.stringType = 1;// Remet l'affichage par défaut.
 	}
-
+	
 	public static ReseauTransport example1() {
 		ReseauTransport reseauTransport = new ReseauTransport();
 		
@@ -116,13 +116,13 @@ public class Test {
 		reseauTransport.addArc("2", "S");
 		reseauTransport.addArc("3", "S");
 		
-		reseauTransport.getNoeud("E").findArc("1").setCapacite(30).setPoids(7);
-		reseauTransport.getNoeud("E").findArc("2").setCapacite(20).setPoids(6);
-		reseauTransport.getNoeud("1").findArc("2").setCapacite(25).setPoids(5);
-		reseauTransport.getNoeud("1").findArc("3").setCapacite(10).setPoids(4);
-		reseauTransport.getNoeud("2").findArc("3").setCapacite(20).setPoids(2);
-		reseauTransport.getNoeud("2").findArc("S").setCapacite(25).setPoids(2);
-		reseauTransport.getNoeud("3").findArc("S").setCapacite(20).setPoids(1);
+		reseauTransport.findArc("E", "1").setCapacite(30).setPoids(7);
+		reseauTransport.findArc("E", "2").setCapacite(20).setPoids(6);
+		reseauTransport.findArc("1", "2").setCapacite(25).setPoids(5);
+		reseauTransport.findArc("1", "3").setCapacite(10).setPoids(4);
+		reseauTransport.findArc("2", "3").setCapacite(20).setPoids(2);
+		reseauTransport.findArc("2", "S").setCapacite(25).setPoids(2);
+		reseauTransport.findArc("3", "S").setCapacite(20).setPoids(1);
 		
 		return reseauTransport;
 	}

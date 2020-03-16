@@ -412,4 +412,41 @@ public class Graphe {
     	
     	return arcs;
     }
+	
+	/**
+	 * Retourne la liste des arcs menant vers le noeud donné.
+	 * @param cible le noeud duquel récupérer les prédécesseurs.
+	 * @return la liste des arcs précédant le noeud.
+	 */
+	
+	public List<Arc> getPred(Noeud cible) {
+		List<Arc> predecesseurs = new LinkedList<Arc>();
+		
+		for(Noeud noeud : getNoeuds()) {
+			Arc arc = noeud.findArc(cible.getId());
+			
+			if(arc != null) {
+				predecesseurs.add(arc);
+			}
+		}
+		
+		return predecesseurs;
+	}
+	
+	/**
+	 * Retourne l'arc connectant la source et cible données.
+	 * @param sourceId l'identifiant du nœud source.
+	 * @param cibleId l'identifiant du nœud cible.
+	 * @return l'arc connectant les nœuds.
+	 */
+	
+	public Arc findArc(String sourceId, String cibleId) {
+		Noeud source = getNoeud(sourceId);
+		
+		if(source != null) {
+			return source.findArc(cibleId);
+		}
+		
+		return null;
+	}
 }

@@ -195,24 +195,4 @@ public class ReseauTransport extends Graphe {
 	public void randomizeCapacites() {
 		randomizeCapacites(5, 50);
 	}
-	
-	/**
-	 * Retourne la liste des arcs menant vers le noeud donné.
-	 * @param cible le noeud duquel récupérer les prédécesseurs.
-	 * @return la liste des arcs précédant le noeud.
-	 */
-	
-	public List<Arc> getPred(Noeud cible) {
-		List<Arc> predecesseurs = new ArrayList<Arc>();
-		
-		for(Noeud noeud : getNoeuds()) {
-			Arc arc = noeud.findArc(cible.getId());
-			
-			if(arc != null) {
-				predecesseurs.add(arc);
-			}
-		}
-		
-		return predecesseurs;
-	}
 }
