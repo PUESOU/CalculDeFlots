@@ -183,7 +183,7 @@ public class ReseauTransport extends Graphe {
 	public void randomizeCapacites(int min, int max) {
 		for(Noeud noeud : getNoeuds()) {
 			for(Arc arc : noeud.getSucc()) {
-				arc.capacite = irandom(min, max);
+				arc.setCapacite(irandom(min, max));
 			}
 		}
 	}

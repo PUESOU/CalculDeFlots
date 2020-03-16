@@ -9,6 +9,7 @@ public class Arc {
     public Arc(Noeud x, Noeud y) {
         this.source = x;
         this.cible = y;
+        poids = 1;
     }
     
     public Arc(Noeud x, Noeud y, double poids, int capacite) {
@@ -43,5 +44,45 @@ public class Arc {
     
     public Noeud getSource() {
     	return source;
+    }
+    
+    public double getPoids() {
+    	return poids;
+	}
+    
+    public Arc setPoids(double poids) {
+    	this.poids = poids;
+    	
+    	return this;
+    }
+    
+    public int getBorne() {
+    	return borne;
+    }
+    
+    public Arc setBorne(int borne) {
+    	this.borne = borne;
+    	
+    	return this;
+    }
+
+    public int getCapacite() {
+    	return capacite;
+    }
+    
+    public Arc setCapacite(int capacite) {
+    	this.capacite = capacite;
+    	
+    	return this;
+    }
+
+    public int getFlux() {
+    	return flux;
+    }
+    
+    public Arc setFlux(int flux) {
+    	this.flux = flux;
+    	
+    	return this;
     }
 }
