@@ -449,4 +449,34 @@ public class Graphe {
 		
 		return null;
 	}
+	
+	/**
+	 * Calcule la valeur du flot v(F) sur le réseau.
+	 * @return la valeur du flot.
+	 */
+	
+	public int valeurFlot() {
+		int valeur = 0;
+		
+		for(Arc arc : getArcs()) {
+			valeur += arc.flux;
+		}
+		
+		return valeur;
+	}
+	
+	/**
+	 * Calcule le coût du flot c(F) sur le réseau.
+	 * @return le coût du flot.
+	 */
+	
+	public double coutFlot() {
+		int cout = 0;
+		
+		for(Arc arc : getArcs()) {
+			cout += arc.flux * arc.getPoids();
+		}
+		
+		return cout;
+	}
 }
