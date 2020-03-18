@@ -72,6 +72,11 @@ public class Graphe {
     	
     	for(Arc arc : graphe.getArcs()) {
     		addArc(arc.getSourceId(), arc.getCibleId());
+    		findArc(arc.getSourceId(), arc.getCibleId())
+    		.setPoids(arc.getPoids())
+    		.setBorne(arc.getBorne())
+    		.setCapacite(arc.getCapacite())
+    		.flux = arc.flux;
     	}
     }
     
