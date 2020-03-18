@@ -3,6 +3,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.csv.*;
+import java.io.File;
+import java.nio.charset.Charset;
+import java.io.IOException;
+import java.util.Iterator;
+import java.io.FileWriter;
+
 public class ReseauTransport extends Graphe {
 	
 	public ReseauTransport() {
@@ -91,6 +98,56 @@ public class ReseauTransport extends Graphe {
 	
 	public ReseauTransport(ReseauTransport reseauTransport) {
 		super(reseauTransport);
+	}
+	
+	public ReseauTransport(String fileName) {
+		this();
+		
+		try {
+			CSVParser parser = CSVParser.parse(new File(fileName), Charset.forName("UTF-8"), CSVFormat.DEFAULT);
+			Iterator<CSVRecord> it = parser.iterator();
+			
+			if(it.hasNext()) {it.next();}// Ignore first line
+			
+			while(it.hasNext()) {
+				CSVRecord record = it.next();
+				
+				if(record.size() >= 2) {// (Source,Cible)
+					String sourceId = record.get(0);
+					String cibleId = record.get(1);
+					
+					addNoeud(sourceId);
+					addNoeud(cibleId);
+					addArc(sourceId, cibleId);
+					
+					if(record.size() >= 3) {// (Source,Cible,Capacité)
+						Arc arc = findArc(sourceId, cibleId);
+						
+						try {
+							int capacite = Integer.parseInt(record.get(2));
+							
+							arc.setCapacite(capacite);
+							
+							if(record.size() >= 4) {// (Source,Cible,Capacité,Poids)
+								double poids = Double.parseDouble(record.get(3));
+								
+								arc.setPoids(poids);
+								
+								if(record.size() >= 5) {// (Source,Cible,Capacité,Poids,Borne)
+									int borne = Integer.parseInt(record.get(4));
+									
+									arc.setBorne(borne);
+								}
+							}
+						} catch(NumberFormatException e) {
+							
+						}
+					}
+				}
+			}
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -198,5 +255,36 @@ public class ReseauTransport extends Graphe {
 	
 	public void randomizeCapacites() {
 		randomizeCapacites(5, 50);
+	}
+	
+	public void export(String fileName) {
+		StringBuffer buffer = new StringBuffer("Source,Cible,Capacité,Poids?,Borne?\n");
+		String sep = ",";
+		
+		for(Arc arc : getArcs()) {
+			buffer
+			.append(arc.getSourceId())
+			.append(sep)
+			.append(arc.getCibleId())
+			.append(sep)
+			.append(arc.getCapacite())
+			.append(sep)
+			.append(arc.getPoids())
+			.append(sep)
+			.append(arc.getBorne())
+			.append('\n');
+		}
+		
+		File outputFile = new File(fileName);
+		FileWriter out;
+		
+		try {
+			out = new FileWriter(outputFile);
+			
+			out.write(buffer.toString());
+			out.close();
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

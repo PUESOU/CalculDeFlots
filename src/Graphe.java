@@ -31,35 +31,29 @@ public class Graphe {
         }
     }
     
-    public Graphe(String file) {
+    public Graphe(String fileName) {
     	this();
     	
     	try {
-    		CSVParser csvParser = CSVParser.parse(new File(file), Charset.forName("UTF-8"), CSVFormat.DEFAULT);
+    		CSVParser csvParser = CSVParser.parse(new File(fileName), Charset.forName("UTF-8"), CSVFormat.DEFAULT);
     		Iterator<CSVRecord> it = csvParser.iterator();
+    		
+    		if(it.hasNext()) {it.next();}// Ignore first line
     		
     		while(it.hasNext()) {
     			CSVRecord record = it.next();
     			
-    			// if(record.size() == 2) {
-    				try {
-	    				int x = Integer.parseInt(record.get(0));
-	    				int y = Integer.parseInt(record.get(1));
-	    				
-	    				addNoeud(x);
-	    				addNoeud(y);
-	    				addArc(x, y);
-    				} catch(NumberFormatException e) {
-    		    		
-    		    	} catch(Exception e) {
-    		    		
-    		    	}
-    			// }
-    			
-    			// System.out.println(record);
+    			if(record.size() >= 2) {// (Source,Cible)
+    				String sourceId = record.get(0);
+    				String cibleId = record.get(1);
+    				
+    				addNoeud(sourceId);
+    				addNoeud(cibleId);
+    				addArc(sourceId, cibleId);
+    			}
     		}
     	} catch(IOException e) {
-    		
+    		e.printStackTrace();
     	}
     }
     
@@ -347,7 +341,7 @@ public class Graphe {
     public void addArcDouble(String x, int y) {addArcDouble(x, y+"");}
     public void addArcDouble(int x, String y) {addArcDouble(x+"", y);}
     
-    public void export() {
+    public void export(String fileName) {
     	StringBuffer buff = new StringBuffer("Source,Target\n");
     	String sep = ",";
     	
@@ -361,7 +355,7 @@ public class Graphe {
     		}
     	}
     	
-    	File outputFile = new File(this.getClass() + ".csv");
+    	File outputFile = new File(fileName);
     	FileWriter out;
     	
     	try {
@@ -372,6 +366,10 @@ public class Graphe {
     	} catch(IOException e) {
     		e.printStackTrace();
     	}
+    }
+    
+    public void export() {
+    	export(this.getClass() + ".csv");
     }
     
     public boolean hasArcDouble(String x, String y) {
