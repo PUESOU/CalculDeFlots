@@ -89,6 +89,10 @@ public class ReseauTransport extends Graphe {
 		randomizeCapacites();
 	}
 	
+	public ReseauTransport(ReseauTransport reseauTransport) {
+		super(reseauTransport);
+	}
+	
 	/**
 	 * Retourne un tableau de strings contenant un nombre donné d'identifiants aléatoires provenant d'un tableau donné.
 	 * @param ids les identifiants à mélanger.

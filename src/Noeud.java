@@ -20,6 +20,11 @@ public class Noeud {
     	this(id+"");
     }
     
+    public Noeud(Noeud noeud) {
+    	this(noeud.getId());
+    	mark = noeud.isMarked();
+    }
+    
     public String toString() {
         if(stringType == 0) {
         	return id;
@@ -93,7 +98,7 @@ public class Noeud {
         
         return false;
     }
-
+    
     public boolean hasSuccesseur(int j) {
         return hasSuccesseur(j+"");
     }

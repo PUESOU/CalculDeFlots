@@ -63,6 +63,18 @@ public class Graphe {
     	}
     }
     
+    public Graphe(Graphe graphe) {
+    	this();
+    	
+    	for(Noeud noeud : graphe.noeuds) {
+    		addNoeud(new Noeud(noeud));
+    	}
+    	
+    	for(Arc arc : graphe.getArcs()) {
+    		addArc(arc.getSourceId(), arc.getCibleId());
+    	}
+    }
+    
     protected void addNoeud(Noeud noeud) {
         noeuds.add(noeud);
         hmap.put(noeud.getId(), noeud);
@@ -248,7 +260,7 @@ public class Graphe {
     					cible.mark = true;
     					
     					stack.push(cible);
-
+    					
     			    	incProfondeur();
     			    	
     			    	printNoeud(cible);
