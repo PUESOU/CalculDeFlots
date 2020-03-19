@@ -28,9 +28,7 @@ public class ExecTimeTest implements Runnable {
 			durations[i] = getDuration();
 		}
 
-		for (long duration : durations) {
-			System.out.println(this.timeRecords + " microsecond: " + duration);
-		}
+		average(durations);
 	}
 
 	private long getDuration() {
@@ -45,4 +43,19 @@ public class ExecTimeTest implements Runnable {
 		return (endTime - startTime) / 1000;
 	}
 
+	private void export(long[] durations) {
+		
+	}
+	
+	private void average(long[] durations) {
+		long totalDuration = 0;
+		for(long duration: durations) {
+			System.out.println(this.timeRecords + " microsecond: " + duration);
+			totalDuration += duration;
+			System.out.println("cumulated total :" + totalDuration);
+		}
+		System.out.println("Sum:" + totalDuration);
+		System.out.println("Average :" + (totalDuration/durations.length));
+	}
+	
 }
