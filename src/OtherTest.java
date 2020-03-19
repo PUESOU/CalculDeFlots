@@ -6,10 +6,10 @@ public class OtherTest {
 		ReseauTransport reseauTransport1 = new ReseauTransport(5, 5);
 		ReseauTransport reseauTransport2 = new ReseauTransport(reseauTransport1);
 
-		MaxFlowSolver algo1 = new FordFulkerson();
+		MaxFlowSolver algo1 = new FullFordFulkerson();
 		MaxFlowSolver algo2 = new BusackerGowen();
 
-		Thread thread1 = new Thread(new ExecTimeTest(count, algo1, fileName + "-Ford.csv", reseauTransport1));
+		Thread thread1 = new Thread(new ExecTimeTest(count, algo1, fileName + "-FullFord.csv", reseauTransport1));
 		Thread thread2 = new Thread(new ExecTimeTest(count, algo2, fileName + "-Busacker.csv", reseauTransport2));
 
 		thread1.start();
@@ -22,5 +22,5 @@ public class OtherTest {
 		OtherTest test = new OtherTest();
 		test.createRecords("Comparaison" + count, count);
 	}
-
+	
 }
