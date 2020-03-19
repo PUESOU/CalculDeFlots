@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class ExecTimeTest implements Runnable {
 
@@ -29,6 +32,7 @@ public class ExecTimeTest implements Runnable {
 		}
 
 		average(durations);
+		export(durations);
 	}
 
 	private long getDuration() {
@@ -44,7 +48,25 @@ public class ExecTimeTest implements Runnable {
 	}
 
 	private void export(long[] durations) {
+		StringBuffer buff = new StringBuffer("Temps Execution\n");
+    	    	
+		for(long duration: durations) {
+			buff
+				.append(duration)
+				.append('\n');
+		}
 		
+    	File outputFile = new File(this.timeRecords);
+    	FileWriter out;
+    	
+    	try {
+    		out = new FileWriter(outputFile);
+    		
+    		out.write(buff.toString());
+    		out.close();
+    	} catch(IOException e) {
+    		e.printStackTrace();
+    	}
 	}
 	
 	private void average(long[] durations) {
