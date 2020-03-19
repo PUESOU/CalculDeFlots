@@ -21,7 +21,7 @@ public class BusackerGowen implements MaxFlowSolver {
 			if(!arc.estSature()) {
 				gef.addArc(arc.getSourceId(), arc.getCibleId());
 				
-				Arc u = gef.findArc(arc.getSourceId(), arc.getCibleId());
+				Arc u = gef.getArc(arc.getSourceId(), arc.getCibleId());
 				u.flux = arc.getCapacite() - arc.flux;
 				u.setPoids(arc.getPoids());
 			}
@@ -29,7 +29,7 @@ public class BusackerGowen implements MaxFlowSolver {
 			if(arc.flux > 0) {
 				gef.addArc(arc.getCibleId(), arc.getSourceId());
 				
-				Arc u = gef.findArc(arc.getCibleId(), arc.getSourceId());
+				Arc u = gef.getArc(arc.getCibleId(), arc.getSourceId());
 				u.flux = arc.flux - arc.getBorne();
 				u.setPoids(-arc.getPoids());
 			}
@@ -105,7 +105,7 @@ public class BusackerGowen implements MaxFlowSolver {
 			Integer delta = null;
 			
 			for(Arc arc : minimalCostPath) {
-				Arc u = reseauTransport.getNoeud(arc.getSourceId()).findArc(arc.getCibleId());
+				Arc u = reseauTransport.getArc(arc.getSourceId(), arc.getCibleId());
 				// if(u == null) {u = reseauTransport.getNoeud(arc.getCibleId()).findArc(arc.getSourceId());}
 				
 				if(u != null) {
@@ -118,7 +118,7 @@ public class BusackerGowen implements MaxFlowSolver {
 			}
 			
 			for(Arc arc : minimalCostPath) {
-				Arc u = reseauTransport.getNoeud(arc.getSourceId()).findArc(arc.getCibleId());
+				Arc u = reseauTransport.getArc(arc.getSourceId(), arc.getCibleId());
 				// if(u == null) {u = reseauTransport.getNoeud(arc.getCibleId()).findArc(arc.getSourceId());}
 				
 				if(u != null) {

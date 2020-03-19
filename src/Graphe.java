@@ -66,7 +66,7 @@ public class Graphe {
     	
     	for(Arc arc : graphe.getArcs()) {
     		addArc(arc.getSourceId(), arc.getCibleId());
-    		findArc(arc.getSourceId(), arc.getCibleId())
+    		getArc(arc.getSourceId(), arc.getCibleId())
     		.setPoids(arc.getPoids())
     		.setBorne(arc.getBorne())
     		.setCapacite(arc.getCapacite())
@@ -438,7 +438,7 @@ public class Graphe {
 		List<Arc> predecesseurs = new LinkedList<Arc>();
 		
 		for(Noeud noeud : getNoeuds()) {
-			Arc arc = noeud.findArc(cible.getId());
+			Arc arc = noeud.getArc(cible.getId());
 			
 			if(arc != null) {
 				predecesseurs.add(arc);
@@ -455,11 +455,11 @@ public class Graphe {
 	 * @return l'arc connectant les nœuds.
 	 */
 	
-	public Arc findArc(String sourceId, String cibleId) {
+	public Arc getArc(String sourceId, String cibleId) {
 		Noeud source = getNoeud(sourceId);
 		
 		if(source != null) {
-			return source.findArc(cibleId);
+			return source.getArc(cibleId);
 		}
 		
 		return null;

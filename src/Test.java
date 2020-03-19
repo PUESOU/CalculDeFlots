@@ -40,9 +40,6 @@ public class Test {
 		
 		Noeud.stringType = 0;// Affichage des nœuds : "id".
 		
-		System.out.println("\n---- Branches ----");
-		System.out.println(listJoin(reseauTransport.getNoeud("E").getBranches(), "\n"));
-		
 		System.out.println("\n---- Chemins ----");
 		System.out.println(listJoin(reseauTransport.getNoeud("E").getPaths(), "\n"));
 		

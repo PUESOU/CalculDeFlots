@@ -121,7 +121,7 @@ public class ReseauTransport extends Graphe {
 					addArc(sourceId, cibleId);
 					
 					if(record.size() >= 3) {// (Source,Cible,Capacité)
-						Arc arc = findArc(sourceId, cibleId);
+						Arc arc = getArc(sourceId, cibleId);
 						
 						try {
 							int capacite = Integer.parseInt(record.get(2));

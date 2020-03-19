@@ -2,6 +2,7 @@
 import java.util.List;
 import java.util.LinkedList;
 import java.util.ListIterator;
+import java.util.HashMap;
 
 public class Noeud {
     private String id;
@@ -11,9 +12,12 @@ public class Noeud {
     
     public static int stringType = 1;
     
+    private HashMap<String, Arc> hmap;
+    
     public Noeud(String id) {
         this.id = id;
         succ = new LinkedList<Arc>();
+        hmap = new HashMap<String, Arc>();
     }
 
     public Noeud(int id) {
@@ -82,21 +86,14 @@ public class Noeud {
             }
         }
         
-        succ.add(new Arc(this, cible));
+        Arc arc = new Arc(this, cible);
+        
+        succ.add(arc);
+        hmap.put(cible.getId(), arc);
     }
     
     public boolean hasSuccesseur(String j) {
-        ListIterator<Arc> it = succ.listIterator();
-        
-        while(it.hasNext()) {
-            Arc arc = it.next();
-            
-            if(arc.getCibleId().equals(j)) {
-                return true;
-            }
-        }
-        
-        return false;
+        return hmap.containsKey(j);
     }
     
     public boolean hasSuccesseur(int j) {
@@ -138,39 +135,12 @@ public class Noeud {
     			it.remove();
     		}
     	}
+    	
+    	hmap.remove(j);
     }
     
     public void removeSuccesseur(int j) {
     	removeSuccesseur(j+"");
-    }
-    
-    /**
-     * Retourne la liste de tous les chemins de nœuds, partant du nœud courant vers les feuilles.
-     * @return la liste des listes de nœuds.
-     */
-    
-    public List<List<Noeud>> getBranches() {
-    	List<List<Noeud>> branches = new LinkedList<List<Noeud>>();
-    	
-    	for(Arc arc : succ) {
-    		List<List<Noeud>> subBranches = arc.getCible().getBranches();
-    		
-    		for(List<Noeud> subBranch : subBranches) {
-    			subBranch.add(0, this);
-    		}
-    		
-    		branches.addAll(subBranches);
-    	}
-    	
-    	if(branches.size() == 0) {
-    		List<Noeud> branch = new LinkedList<Noeud>();
-    		
-    		branch.add(this);
-    		
-    		branches.add(branch);
-    	}
-    	
-    	return branches;
     }
     
     private boolean calledGetPaths = false;
@@ -219,13 +189,7 @@ public class Noeud {
     	return paths;
     }
     
-    public Arc findArc(String cibleId) {
-    	for(Arc arc : succ) {
-    		if(arc.getCibleId().equals(cibleId)) {
-    			return arc;
-    		}
-    	}
-    	
-    	return null;
+    public Arc getArc(String cibleId) {
+    	return hmap.get(cibleId);
     }
 }
