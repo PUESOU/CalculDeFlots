@@ -57,7 +57,7 @@ public class ReseauTransport extends Graphe {
 			// Combien de nœuds doivent suivre le nœud.
 			
 			int randomCount = irandom(1, m);
-			randomCount = 1;
+			// randomCount = 1;
 			
 			// Liste mélangée des nœuds suivants.
 			
@@ -76,7 +76,7 @@ public class ReseauTransport extends Graphe {
 			// Combien de nœuds doivent précéder le nœud.
 			
 			int randomCount = irandom(1, n);
-			randomCount = 1;
+			// randomCount = 1;
 			
 			// Liste mélangée des nœuds précédents.
 			
