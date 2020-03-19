@@ -3,3 +3,8 @@ bin/
 .settings/
 .classpath
 .project
+src/GrapheTSP.java
+src/Point.java
+src/RandomGraphe.java
+src/ScaleFree.java
+src/SmallWorld.java
