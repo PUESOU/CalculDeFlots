@@ -38,6 +38,12 @@ public class BusackerGowen implements MaxFlowSolver {
 		return gef;
 	}
 	
+	/**
+	 * Retourne le chemin le moins coûteux parmi tous les chemins allant de E à S dans le graphe d'écart associé au réseau de transport donné.
+	 * @param reseauTransport le réseau de transport.
+	 * @return le chemin au coût minimal dans GeF.
+	 */
+	
 	public static List<Arc> minimalCostGefPath(ReseauTransport reseauTransport) {
 		ReseauTransport gef = gef(reseauTransport);
 		List<List<Arc>> paths = gef.getNoeud("E").getPaths();
@@ -57,10 +63,14 @@ public class BusackerGowen implements MaxFlowSolver {
 			}
 		}
 		
-		// System.out.println(Flotests.pathsToString(pathsToS));
-		
 		return minimalCostPath(pathsToS);
 	}
+	
+	/**
+	 * Retourne le chemin au coût minimal parmi une liste.
+	 * @param paths la liste de chemins.
+	 * @return le chemin au coût minimal.
+	 */
 	
 	public static List<Arc> minimalCostPath(List<List<Arc>> paths) {
 		List<Arc> shortestPath = null;
@@ -73,8 +83,6 @@ public class BusackerGowen implements MaxFlowSolver {
 				pathCost += arc.getPoids();
 			}
 			
-			// System.out.println(pathCost);
-			
 			if(minimalCost == null || pathCost < minimalCost) {
 				minimalCost = pathCost;
 				shortestPath = path;
@@ -83,6 +91,12 @@ public class BusackerGowen implements MaxFlowSolver {
 		
 		return shortestPath;
 	}
+	
+	/**
+	 * Retourne le coût d'un chemin.
+	 * @param path le chemin d'arcs.
+	 * @return la somme des coûts de chaque arc.
+	 */
 	
 	public static int pathCost(List<Arc> path) {
 		int pathCost = 0;
@@ -128,30 +142,6 @@ public class BusackerGowen implements MaxFlowSolver {
 			
 			V += delta;
 			C += m * delta;
-			
-			/**
-			
-			System.out.println("Coût : " + m);
-			System.out.println(Flotests.pathToString(minimalCostPath));
-			
-			ReseauTransport gef = gef(reseauTransport);
-			
-			for(Noeud noeud : gef.getNoeuds()) {
-				for(Arc arc : noeud.getSucc()) {
-					Noeud.stringType = 0;
-					// System.out.println(arcToString(arc));
-					Noeud.stringType = 1;
-				}
-			}
-			
-			// printGraphPaths(reseauTransport);
-			
-			System.out.println("V = " + V + ", C = " + C);
-			
-			System.out.println("==================================================");
-			
-			/**/
-			
 		}
 	}
 	
